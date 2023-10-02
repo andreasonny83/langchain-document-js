@@ -2,9 +2,9 @@ import '@tensorflow/tfjs-node';
 import { Ollama } from 'langchain/llms/ollama';
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio';
 import { RetrievalQAChain } from 'langchain/chains';
+import { TensorFlowEmbeddings } from 'langchain/embeddings/tensorflow';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
-import { TensorFlowEmbeddings } from 'langchain/embeddings/tensorflow';
 
 const WIKI_PAGE = '2023_Hawaii_wildfires';
 
@@ -24,7 +24,7 @@ try {
   const retriever = vectorStore.asRetriever();
 
   const ollama = new Ollama({
-    baseUrl: 'http://localhost:114342',
+    baseUrl: 'http://localhost:11434',
     model: 'llama2',
   });
 
