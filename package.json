@@ -16,9 +16,9 @@
     "@tensorflow-models/universal-sentence-encoder": "^1.3.3",
     "@tensorflow/tfjs-converter": "^3.6.0",
     "@tensorflow/tfjs-core": "^3.6.0",
-    "@tensorflow/tfjs-node": "^4.10.0",
+    "@tensorflow/tfjs-node": "^3.21.1",
     "cheerio": "^1.0.0-rc.12",
-    "langchain": "^0.0.156"
+    "langchain": "^0.0.157"
   },
   "devDependencies": {
     "eslint": "^8.50.0",
