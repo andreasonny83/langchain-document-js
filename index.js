@@ -11,17 +11,24 @@ import { TensorFlowEmbeddings } from 'langchain/embeddings/tensorflow';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 
-const WIKI_PAGE = '2023_Hawaii_wildfires';
+const DEFAULT_WIKI_PAGE = '2023_Hawaii_wildfires';
 
 (async () => {
+  const typeIndex = process.argv.indexOf('--type');
+  const type = typeIndex > -1 ? process.argv[typeIndex + 1] : undefined;
+  const wikiPage = type === 'wiki' && process.argv[typeIndex + 2];
+  const query = process.argv.length > 2 && process.argv[process.argv.length - 1];
+
   try {
     // Retrieve the document from Wikipedia
-    const loader = new CheerioWebBaseLoader(`https://en.wikipedia.org/wiki/${WIKI_PAGE}`);
+    const loader = new CheerioWebBaseLoader(
+      `https://en.wikipedia.org/wiki/${wikiPage || DEFAULT_WIKI_PAGE}`,
+    );
     const data = await loader.load();
 
     const textSplitter = new RecursiveCharacterTextSplitter({
       chunkSize: 500,
-      chunkOverlap: 20,
+      chunkOverlap: 0,
     });
     const splitDocs = await textSplitter.splitDocuments(data);
 
@@ -40,7 +47,7 @@ const WIKI_PAGE = '2023_Hawaii_wildfires';
     const chain = RetrievalQAChain.fromLLM(ollama, retriever);
 
     const result = await chain.call({
-      query: "When was Hawaii's request for a major disaster declaration approved?",
+      query: query || 'What is the name of the volcano that erupted in 2021?',
     });
 
     console.log(result.text);
