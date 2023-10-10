@@ -1,3 +1,8 @@
+// Copyright (c) 2023 AndreaSonny <github@andreasonny83.mailer.me> (https://github.com/andreasonny83)
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
 import '@tensorflow/tfjs-node';
 import { Ollama } from 'langchain/llms/ollama';
 import { CheerioWebBaseLoader } from 'langchain/document_loaders/web/cheerio';
