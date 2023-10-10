@@ -4,14 +4,17 @@
   "description": "langchain document in NodeJS",
   "type": "module",
   "main": "index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "lint": "npx eslint --fix **/*.{js,cjs}",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "andreasonny83",
+  "license": "MIT",
   "dependencies": {
     "@tensorflow-models/universal-sentence-encoder": "^1.3.3",
     "@tensorflow/tfjs-converter": "^3.6.0",
